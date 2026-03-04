@@ -1,0 +1,10 @@
+---
+- include_tasks:        'tasks/common/install_packages.yml'
+- include_tasks:        'tasks/common/template_files.yml'
+- assert:
+    that:               True
+    quiet:              True
+  changed_when:         True
+  when:                 install_packages_result.changed
+                        or template_files_result.changed
+  notify:               'run updates'

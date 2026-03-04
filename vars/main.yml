@@ -1,0 +1,18 @@
+install_packages:               
+  - 'fasttrack-archive-keyring'
+source_url:                     'https://fasttrack.debian.net/debian-fasttrack'
+source_suites:                  
+  - "{{ debian_release_name|default(os_release_name) }}-fasttrack"
+  - "{{ debian_release_name|default(os_release_name) }}-backports-staging"
+source_components:
+  - 'main'
+  - 'contrib'
+  - 'non-free'
+  - 'non-free-firmware'
+keyring_file:                   '/usr/share/keyrings/fasttrack-archive-keyring.gpg'
+template_files:
+  - owner:                      'root'
+    group:                      'root'
+    mode:                       '0644'
+    src:                        'templates/conf/sources.list.d/debian_fasttrack_sources.j2'
+    dest:                       "/etc/apt/sources.list.d/debian_{{ debian_release_name|default(os_release_name) }}_fasttrack.sources"
