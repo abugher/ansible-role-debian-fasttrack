@@ -1,9 +1,10 @@
 install_packages:               
   - 'fasttrack-archive-keyring'
 source_url:                     'https://fasttrack.debian.net/debian-fasttrack'
+release_name:                   "{{ fasttrack_release_name|default(debian_release_name|default(os_release_name)) }}"
 source_suites:                  
-  - "{{ debian_release_name|default(os_release_name) }}-fasttrack"
-  - "{{ debian_release_name|default(os_release_name) }}-backports-staging"
+  - "{{ release_name }}-fasttrack"
+  - "{{ release_name }}-backports-staging"
 source_components:
   - 'main'
   - 'contrib'
